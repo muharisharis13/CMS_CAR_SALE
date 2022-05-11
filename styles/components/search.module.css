@@ -1,0 +1,28 @@
+.inputSearch:focus{
+ box-shadow: none;
+}
+
+.inputSearch{
+  background-color: transparent !important;
+  border: none;
+}
+
+.inputSearch::placeholder{
+  color:#ccc;
+}
+
+.inputGroup{
+border:thin solid #ccc;
+border-radius: 1rem;
+display: flex !important;
+flex-wrap: nowrap;
+}
+
+.input{
+  width: 100%;
+}
+
+
+.btn:focus{
+ box-shadow: none;
+}
