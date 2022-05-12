@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import * as Containers from "../../containers";
+import * as Components from "../../components";
 
 function Login() {
   const router = useRouter();
@@ -11,6 +12,7 @@ function Login() {
   };
   return (
     <div>
+      <Components.Helmet title="Login" />
       <Head>
         <link
           href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap"
