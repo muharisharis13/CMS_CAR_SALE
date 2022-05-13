@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import * as Components from "../../components";
+import ModalDetail from "./modal.user.detail";
 
 const dataColumns = [
   {
@@ -18,30 +19,43 @@ const dataColumns = [
     header: "header 4",
     key: "header4",
   },
-];
-
-const dataTable = [
   {
-    header1: "header1",
-    header2: "header2",
-    header3: "header3",
-    header4: "header4",
-  },
-  {
-    header1: "header1",
-    header2: "header2",
-    header3: "header3",
-    header4: "header4",
-  },
-  {
-    header1: "header1",
-    header2: "header2",
-    header3: "header3",
-    header4: "header4",
+    header: "More",
+    key: "header5",
   },
 ];
 
 const User = () => {
+  const [modal, setModal] = useState({
+    detail: false,
+  });
+  const ShowModal = () => setModal((state) => ({ ...state, detail: true }));
+  const dataTable = [
+    {
+      header1: "header1",
+      header2: "header2",
+      header3: "header3",
+      header4: "header4",
+      header5: (
+        <div className="btn" onClick={ShowModal}>
+          View Detail
+        </div>
+      ),
+    },
+    {
+      header1: "header1",
+      header2: "header2",
+      header3: "header3",
+      header4: "header4",
+    },
+    {
+      header1: "header1",
+      header2: "header2",
+      header3: "header3",
+      header4: "header4",
+    },
+  ];
+
   return (
     <div>
       <header>
@@ -56,6 +70,12 @@ const User = () => {
           <Components.dataTable dataColumns={dataColumns} data={dataTable} />
         </div>
       </div>
+
+      {/* modal ========== */}
+      <ModalDetail
+        show={modal.detail}
+        onHide={() => setModal((state) => ({ ...state, detail: false }))}
+      />
     </div>
   );
 };
