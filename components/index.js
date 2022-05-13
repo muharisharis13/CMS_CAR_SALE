@@ -7,6 +7,7 @@ import * as Modal from "./modal";
 import * as DatePicker from "./datepicker";
 import * as TableInput from "./tableInput";
 import Helmet from "./helmet";
+import dataTable from "./dataTable/index.js";
 
 export {
   Layout,
@@ -18,4 +19,5 @@ export {
   DatePicker,
   TableInput,
   Helmet,
+  dataTable,
 };

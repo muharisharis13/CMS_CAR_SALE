@@ -8,10 +8,17 @@ const Layout = (props) => {
     <div>
       <Script src="/assets/js/mazer.js" />
       <div id="app">
-        <div className="wrap-header">
+        <div classname="wrap-header">
           <Header />
         </div>
-        <div id="main">{children}</div>
+        <div id="main">
+          <header className="mb-3">
+            <a href="#" className="burger-btn d-block d-xl-none">
+              <i className="bi bi-justify fs-3"></i>
+            </a>
+          </header>
+          {children}
+        </div>
       </div>
     </div>
   );

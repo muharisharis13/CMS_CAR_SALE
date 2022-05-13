@@ -6,6 +6,12 @@
     "subNav":null
   },
   {
+    "icon": "bi bi-grid-fill",
+    "name": "User",
+    "path": "/user",
+    "subNav":null
+  },
+  {
     "icon": "bi bi-stack",
     "name": "Library",
     "path": "#",
