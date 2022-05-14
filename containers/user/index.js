@@ -29,8 +29,8 @@ const User = () => {
   const [modal, setModal] = useState({
     detail: false,
   });
-  const ShowModal = () => setModal((state) => ({ ...state, detail: true }));
-  const dataTable = [
+  const [search, setSearch] = useState("");
+  const [data, setData] = useState([
     {
       header1: "header1",
       header2: "header2",
@@ -43,7 +43,7 @@ const User = () => {
       ),
     },
     {
-      header1: "header1",
+      header1: "header1 muharis",
       header2: "header2",
       header3: "header3",
       header4: "header4",
@@ -54,7 +54,14 @@ const User = () => {
       header3: "header3",
       header4: "header4",
     },
-  ];
+  ]);
+
+  const ShowModal = () => setModal((state) => ({ ...state, detail: true }));
+
+  const onHandlerSubmitSearch = () => {
+    const filter = data.filter((filter) => filter.header1 === search);
+    setData(filter);
+  };
 
   return (
     <div>
@@ -67,7 +74,23 @@ const User = () => {
       </header>
       <div className="card">
         <div className="card-body">
-          <Components.dataTable dataColumns={dataColumns} data={dataTable} />
+          <Components.dataTable
+            dataColumns={dataColumns}
+            valueSearch={search}
+            onChangeSearch={(e) => setSearch(e)}
+            SubmitSearch={onHandlerSubmitSearch}
+            activeSearch
+          >
+            {data.map((item, idx) => (
+              <tr key={idx}>
+                <td>{item.header1}</td>
+                <td>{item.header2}</td>
+                <td>{item.header3}</td>
+                <td>{item.header4}</td>
+                <td>{item.header5}</td>
+              </tr>
+            ))}
+          </Components.dataTable>
         </div>
       </div>
 

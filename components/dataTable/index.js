@@ -1,84 +1,50 @@
 import React, { useMemo } from "react";
 import { useTable } from "react-table";
 import PropTypes from "prop-types";
+import * as Component from "..";
 
 const dataTable = (props) => {
-  const { dataColumns, data } = props;
-
-  const columns = useMemo(() => {
-    return Array.isArray(dataColumns) && dataColumns?.length > 0
-      ? dataColumns?.map((item) => ({
-          Header: item.header,
-          accessor: item.key,
-        }))
-      : [
-          {
-            Header: "Column 1",
-            accessor: "col1",
-          },
-          {
-            Header: "Column 2",
-            accessor: "col2",
-          },
-          {
-            Header: "Column 3",
-            accessor: "col3",
-          },
-        ];
-  }, []);
-
-  const dataTable = useMemo(() => {
-    return Array.isArray(data) && data?.length
-      ? data?.map((item) => item)
-      : [
-          {
-            col1: "Hello",
-            col2: "World",
-            col3: "muharis",
-          },
-          {
-            col1: "react-table",
-            col2: "rocks",
-            col3: "Muharis",
-          },
-          {
-            col1: "whatever",
-            col2: "you want",
-            col3: "Muharis",
-          },
-        ];
-  }, []);
-
-  const tableInstance = useTable({ columns: columns, data: dataTable });
-
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    tableInstance;
+  const {
+    dataColumns,
+    children,
+    valueSearch,
+    onChangeSearch,
+    SubmitSearch,
+    activeSearch,
+  } = props;
 
   return (
-    <div className="table-responsive">
-      <table className="table table-hover mb-0" {...getTableProps()}>
-        <thead>
-          {headerGroups?.map((headerGroups) => (
-            <tr {...headerGroups.getHeaderGroupProps()}>
-              {headerGroups.headers.map((column) => (
-                <th>{column.render("Header")}</th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  return <td>{cell.render("Cell")}</td>;
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+    <div className="container">
+      <div className="row">
+        {activeSearch && (
+          <div className="col-4">
+            <Component.Search
+              value={valueSearch}
+              onChange={onChangeSearch}
+              SubmitSearch={SubmitSearch}
+            />
+          </div>
+        )}
+        <div className="col-12">
+          <div className="table-responsive">
+            <table className="table table-hover mb-0">
+              <thead>
+                <tr>
+                  {dataColumns?.map((item, idx) => (
+                    <th key={idx}>{item.header}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>{children}</tbody>
+            </table>
+          </div>
+        </div>
+        <div className="col-12">
+          <div className="mt-3">
+            <Component.Pagination />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -86,6 +52,10 @@ const dataTable = (props) => {
 dataTable.propTypes = {
   dataColumns: PropTypes.array.isRequired,
   data: PropTypes.array.isRequired,
+  valueSearch: PropTypes.string.isRequired,
+  onChangeSearch: PropTypes.func.isRequired,
+  SubmitSearch: PropTypes.func.isRequired,
+  activeSearch: PropTypes.bool,
 };
 
 export default dataTable;
