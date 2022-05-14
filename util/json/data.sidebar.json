@@ -25,11 +25,5 @@
         "path": "/library-sub/categories"
       }
     ] 
-  },
-    {
-    "icon": "bi bi-person-fill",
-    "name": "User",
-    "path": "/user",
-    "subNav":null
   }
 ]
