@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import * as Components from "../../components";
 import ModalDetail from "./modal.user.detail";
+import ModalCreated from "./modal.created";
 
 const dataColumns = [
   {
@@ -28,6 +29,7 @@ const dataColumns = [
 const User = () => {
   const [modal, setModal] = useState({
     detail: false,
+    create: false
   });
   const [search, setSearch] = useState("");
   const [data, setData] = useState([
@@ -37,7 +39,7 @@ const User = () => {
       header3: "header3",
       header4: "header4",
       header5: (
-        <div className="btn" onClick={ShowModal}>
+        <div className="btn" onClick={()=>ShowModal({id})}>
           View Detail
         </div>
       ),
@@ -57,6 +59,7 @@ const User = () => {
   ]);
 
   const ShowModal = () => setModal((state) => ({ ...state, detail: true }));
+  const ShowModalCreated = () => setModal((state) => ({ ...state, create: true }));
 
   const onHandlerSubmitSearch = () => {
     const filter = data.filter((filter) => filter.header1 === search);
@@ -72,8 +75,14 @@ const User = () => {
           breadcrumbItemActive="User"
         />
       </header>
+   
       <div className="card">
         <div className="card-body">
+             <div className="row">
+        <div className="col-12">
+          <button className="btn btn-primary float-end mb-2" onClick={()=>ShowModalCreated()}>Created</button>
+        </div>
+        <div className="col-12">
           <Components.dataTable
             dataColumns={dataColumns}
             valueSearch={search}
@@ -90,7 +99,10 @@ const User = () => {
                 <td>{item.header5}</td>
               </tr>
             ))}
-          </Components.dataTable>
+          </Components.dataTable> 
+        </div>
+      </div>
+         
         </div>
       </div>
 
@@ -99,6 +111,11 @@ const User = () => {
         show={modal.detail}
         onHide={() => setModal((state) => ({ ...state, detail: false }))}
       />
+      <ModalCreated
+      show={modal.create}
+      onHide={() => setModal((state) => ({...state, create:false}))}
+      />
+
     </div>
   );
 };

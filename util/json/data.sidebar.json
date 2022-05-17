@@ -6,7 +6,7 @@
     "subNav":null
   },
   {
-    "icon": "bi bi-grid-fill",
+    "icon": "bi bi-people-fill",
     "name": "User",
     "path": "/user",
     "subNav":null
