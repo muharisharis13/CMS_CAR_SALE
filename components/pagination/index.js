@@ -1,22 +1,34 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Pagination from "@etchteam/next-pagination";
-import "@etchteam/next-pagination/dist/index.css";
+import ReactPaginate from "react-paginate";
 
 const IdxPagination = (props) => {
-  const { defaultCurrent, total = 200, onChange } = props;
+  const { totalPage = 5, handleOnChange, page } = props;
 
   return (
-    <React.Fragment>
-      <Pagination total={total} />
-    </React.Fragment>
+    <ReactPaginate
+      previousLabel={<i className="bi bi-left" style={{ width: "20px" }} />}
+      nextLabel={<i className="bi bi-right" style={{ width: "20px" }} />}
+      breakLabel={"..."}
+      breakClassName={"break-me"}
+      pageCount={totalPage}
+      marginPagesDisplayed={1}
+      pageRangeDisplayed={2}
+      onPageChange={handleOnChange}
+      containerClassName={"pagination"}
+      previousLinkClassName={"pagination__link"}
+      nextLinkClassName={"pagination__link"}
+      disabledClassName={"pagination__link--disabled"}
+      activeClassName={"pagination__link--active"}
+      initialPage={page - 1}
+    />
   );
 };
 
 IdxPagination.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  total: PropTypes.number.isRequired,
-  defaultCurrent: PropTypes.number.isRequired,
+  totalPage: PropTypes.number.isRequired,
+  page: PropTypes.number.isRequired,
+  handleOnChange: PropTypes.number.isRequired,
 };
 
 export default IdxPagination;

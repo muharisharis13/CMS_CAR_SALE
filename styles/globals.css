@@ -14,3 +14,43 @@ a {
 * {
   box-sizing: border-box;
 } */
+
+
+/* =======PAGINATION=========== */
+
+.pagination {
+  display: flex;
+  padding: 0px 20px;
+  list-style: none;
+  cursor: pointer;
+}
+
+.pagination a {
+  /* padding: 5px 8px; */
+  display: flex;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 100%;
+  border: 1px solid #8898AA;
+  color: #8898AA !important;
+  text-decoration: none;
+  margin: 0px 2px;
+}
+
+.pagination__link {
+  font-weight: bold;
+}
+
+.pagination__link--active a {
+  color: #fff !important;
+  background: #6c7ac9;
+}
+
+.pagination__link--disabled a {
+  color: rgb(198, 197, 202);
+  border: 1px solid rgb(198, 197, 202);
+}
