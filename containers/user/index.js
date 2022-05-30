@@ -56,7 +56,10 @@ const User = () => {
     },
   ]);
 
-  const ShowModal = () => setModal((state) => ({ ...state, detail: true }));
+  const ShowModal = () => {
+    console.log("muharis");
+    setModal((state) => ({ ...state, detail: true }));
+  };
 
   const onHandlerSubmitSearch = () => {
     const filter = data.filter((filter) => filter.header1 === search);
