@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as Components from "../../components";
-// import ModalDetail from "./modal.product.detail";
-// import ModalCreated from "./modal.created";
+import ModalDetail from "./edit";
+import ModalCreated from "./add";
 
 const dataColumns = [
   {
@@ -45,6 +45,20 @@ const Product = () => {
   });
   const [search, setSearch] = useState("");
   const [data, setData] = useState([
+    {
+      header1: "Ford Fiesta",
+      header2: "Ahmad",
+      header3: "BK 1021 SAH",
+      header4: "082267678854",
+      header5: "Sedan",
+      header6: "2013",
+      header7: "130.000",
+      header8: (
+        <div className="btn" onClick={() => ShowModal({ id })}>
+          View Detail
+        </div>
+      ),
+    },
     {
       header1: "Ford Fiesta",
       header2: "Ahmad",
@@ -118,14 +132,14 @@ const Product = () => {
       </div>
 
       {/* modal ========== */}
-      {/* <ModalDetail
+      <ModalDetail
         show={modal.detail}
         onHide={() => setModal((state) => ({ ...state, detail: false }))}
       />
       <ModalCreated
         show={modal.create}
         onHide={() => setModal((state) => ({ ...state, create: false }))}
-      /> */}
+      />
     </div>
   );
 };
