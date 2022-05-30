@@ -12,6 +12,12 @@
     "subNav":null
   },
   {
+    "icon": "bi bi-receipt",
+    "name": "Product",
+    "path": "/product",
+    "subNav":null
+  },
+  {
     "icon": "bi bi-stack",
     "name": "Library",
     "path": "#",
