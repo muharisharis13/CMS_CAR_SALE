@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import * as util from "../util";
+import * as util from "utils";
 
 export default function Header() {
   const Router = useRouter();

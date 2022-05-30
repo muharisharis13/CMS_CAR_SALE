@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import Select from "react-select";
-import PropTypes from "prop-types";
 
 const array = [
-  { value: "Minuman", label: "Minuman" },
-  { value: "Makanan", label: "Makanan" },
-  { value: "Lainnya", label: "Lainnya" },
+  { value: "Waiting Schedule", label: "Waiting Schedule" },
+  { value: "Inspkesi", label: "Inspkesi" },
 ];
 
-const category = (props) => {
+const Status = (props) => {
   const [selected, setSelected] = useState("");
 
   const HandleSelected = (e) => {
@@ -19,9 +17,9 @@ const category = (props) => {
       options={array}
       value={selected}
       onChange={(e) => HandleSelected(e)}
-      placeholder="Select Category"
+      placeholder="Select Status"
     />
   );
 };
 
-export default category;
+export default Status;

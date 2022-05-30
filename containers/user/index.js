@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as Components from "../../components";
 import ModalDetail from "./modal.user.detail";
 import ModalCreated from "./modal.created";
+import * as Select from "components/Select";
 
 const dataColumns = [
   {
@@ -29,7 +30,7 @@ const dataColumns = [
 const User = () => {
   const [modal, setModal] = useState({
     detail: false,
-    create: false
+    create: false,
   });
   const [search, setSearch] = useState("");
   const [data, setData] = useState([
@@ -39,7 +40,7 @@ const User = () => {
       header3: "header3",
       header4: "header4",
       header5: (
-        <div className="btn" onClick={()=>ShowModal({id})}>
+        <div className="btn" onClick={() => ShowModal({ id })}>
           View Detail
         </div>
       ),
@@ -59,7 +60,8 @@ const User = () => {
   ]);
 
   const ShowModal = () => setModal((state) => ({ ...state, detail: true }));
-  const ShowModalCreated = () => setModal((state) => ({ ...state, create: true }));
+  const ShowModalCreated = () =>
+    setModal((state) => ({ ...state, create: true }));
 
   const onHandlerSubmitSearch = () => {
     const filter = data.filter((filter) => filter.header1 === search);
@@ -75,34 +77,42 @@ const User = () => {
           breadcrumbItemActive="User"
         />
       </header>
-   
+
       <div className="card">
         <div className="card-body">
-             <div className="row">
-        <div className="col-12">
-          <button className="btn btn-primary float-end mb-2" onClick={()=>ShowModalCreated()}>Created</button>
-        </div>
-        <div className="col-12">
-          <Components.dataTable
-            dataColumns={dataColumns}
-            valueSearch={search}
-            onChangeSearch={(e) => setSearch(e)}
-            SubmitSearch={onHandlerSubmitSearch}
-            activeSearch
-          >
-            {data.map((item, idx) => (
-              <tr key={idx}>
-                <td>{item.header1}</td>
-                <td>{item.header2}</td>
-                <td>{item.header3}</td>
-                <td>{item.header4}</td>
-                <td>{item.header5}</td>
-              </tr>
-            ))}
-          </Components.dataTable> 
-        </div>
-      </div>
-         
+          <div className="row">
+            <div className="col-12">
+              <button
+                className="btn btn-primary float-end mb-2"
+                onClick={() => ShowModalCreated()}
+              >
+                Created
+              </button>
+            </div>
+            <div className="col-8 mb-3"></div>
+            <div className="col-4">
+              <Select.Status />
+            </div>
+            <div className="col-12">
+              <Components.dataTable
+                dataColumns={dataColumns}
+                valueSearch={search}
+                onChangeSearch={(e) => setSearch(e)}
+                SubmitSearch={onHandlerSubmitSearch}
+                activeSearch
+              >
+                {data.map((item, idx) => (
+                  <tr key={idx}>
+                    <td>{item.header1}</td>
+                    <td>{item.header2}</td>
+                    <td>{item.header3}</td>
+                    <td>{item.header4}</td>
+                    <td>{item.header5}</td>
+                  </tr>
+                ))}
+              </Components.dataTable>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -112,10 +122,9 @@ const User = () => {
         onHide={() => setModal((state) => ({ ...state, detail: false }))}
       />
       <ModalCreated
-      show={modal.create}
-      onHide={() => setModal((state) => ({...state, create:false}))}
+        show={modal.create}
+        onHide={() => setModal((state) => ({ ...state, create: false }))}
       />
-
     </div>
   );
 };

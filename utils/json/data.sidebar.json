@@ -18,18 +18,10 @@
     "subNav":null
   },
   {
-    "icon": "bi bi-stack",
-    "name": "Library",
-    "path": "#",
-    "subNav":[
-      {
-        "name":"Item Library",
-        "path": "/library-sub/item-library"
-      },
-      {
-        "name":"Categories",
-        "path": "/library-sub/categories"
-      }
-    ] 
+    "icon": "bi bi-receipt",
+    "name": "sales",
+    "path": "/sales",
+    "subNav":null
   }
+  
 ]

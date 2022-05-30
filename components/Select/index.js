@@ -1,4 +1,3 @@
-import category from "./category";
-import Supplier from "./Supplier";
+import Status from "./Status";
 
-export { category, Supplier };
+export { Status };
