@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import * as Module from "../../module";
 
 const edit = (props) => {
   const { show, onHide } = props;
-
+  const [value, setValue] = useState("berarti value ini yang diambil dari API");
   const btnSubmit = () => {
     alert("success");
     // letak handleOnChange di sini
@@ -28,6 +28,9 @@ const edit = (props) => {
                   type="text"
                   className="form-control"
                   id="basicInput"
+                  value={value}
+                  onChange={(event) => setValue()}
+                  disabled
                   placeholder="Nama Mobil"
                 />
               </div>
@@ -55,7 +58,7 @@ const edit = (props) => {
                   type="tel"
                   className="form-control"
                   id="basicInput"
-                  //   value={phone}
+                  //   value={value}
                   //   onChange={(event) =>
                   //     setPhone(event.target.value.replace(/[^0-9.]/g, ""))
                   //   }
