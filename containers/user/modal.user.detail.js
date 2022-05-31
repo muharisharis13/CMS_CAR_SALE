@@ -1,5 +1,5 @@
 import React from "react";
-import * as Module from "../../module";
+import * as Module from "modules";
 
 const ModalDetail = (props) => {
   const { show, onHide } = props;

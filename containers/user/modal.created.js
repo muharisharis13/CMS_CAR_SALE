@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as Module from "../../module";
+import * as Module from "modules";
 
 const modalCreated = (props) => {
   const { show, onHide } = props;

@@ -1,14 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ReactPaginate from "react-paginate";
+import ReactPaginate from "react-paginate-next";
+// import "styles/pagination.module.css";
 
 const IdxPagination = (props) => {
-  const { totalPage = 5, handleOnChange, page } = props;
+  const { totalPage = 100, handleOnChange, page } = props;
 
   return (
     <ReactPaginate
-      previousLabel={<i className="bi bi-left" style={{ width: "20px" }} />}
-      nextLabel={<i className="bi bi-right" style={{ width: "20px" }} />}
+      previousLabel={"Prev"}
+      nextLabel={"Next"}
       breakLabel={"..."}
       breakClassName={"break-me"}
       pageCount={totalPage}
