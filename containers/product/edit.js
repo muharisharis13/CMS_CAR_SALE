@@ -1,9 +1,9 @@
 import React from "react";
 import * as Module from "modules";
+import FormInputProduct from "components/product/FormInputProduct";
 
-const ModalDetail = (props) => {
+const edit = (props) => {
   const { show, onHide } = props;
-
   const btnSubmit = () => {
     alert("success");
     // letak handleOnChange di sini
@@ -18,9 +18,9 @@ const ModalDetail = (props) => {
       btnSubmit={btnSubmit}
       size="xl"
     >
-      ModalDetail
+      <FormInputProduct />
     </Module.Modal.Basic>
   );
 };
 
-export default ModalDetail;
+export default edit;

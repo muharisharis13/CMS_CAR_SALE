@@ -1,33 +1,40 @@
 import React, { useState } from "react";
 import * as Components from "../../components";
-import ModalDetail from "./modal.user.detail";
-import ModalCreated from "./modal.created";
-import * as Select from "components/Select";
+import ModalDetail from "./edit";
+import Badge from "components/badge";
 
 const dataColumns = [
   {
-    header: "header 1",
+    header: "Nama",
     key: "header1",
   },
   {
-    header: "header 2",
+    header: "Merk",
     key: "header2",
   },
   {
-    header: "header 3",
+    header: "Model",
     key: "header3",
   },
   {
-    header: "header 4",
+    header: "No. Handphone",
     key: "header4",
   },
   {
-    header: "More",
+    header: "Email",
     key: "header5",
+  },
+  {
+    header: "Status",
+    key: "header6",
+  },
+  {
+    header: "More",
+    key: "header7",
   },
 ];
 
-const User = () => {
+const Sales = () => {
   const [modal, setModal] = useState({
     detail: false,
     create: false,
@@ -35,33 +42,21 @@ const User = () => {
   const [search, setSearch] = useState("");
   const [data, setData] = useState([
     {
-      header1: "header1",
-      header2: "header2",
-      header3: "header3",
-      header4: "header4",
-      header5: (
+      header1: "Ahmad",
+      header2: "Ford",
+      header3: "Sedan",
+      header4: "082267678854",
+      header5: "ahmad@tes.com",
+      header6: <Badge status="waiting_schedule" />,
+      header7: (
         <div className="btn" onClick={() => ShowModal({ id })}>
           View Detail
         </div>
       ),
     },
-    {
-      header1: "header1 muharis",
-      header2: "header2",
-      header3: "header3",
-      header4: "header4",
-    },
-    {
-      header1: "header1",
-      header2: "header2",
-      header3: "header3",
-      header4: "header4",
-    },
   ]);
 
   const ShowModal = () => setModal((state) => ({ ...state, detail: true }));
-  const ShowModalCreated = () =>
-    setModal((state) => ({ ...state, create: true }));
 
   const onHandlerSubmitSearch = () => {
     const filter = data.filter((filter) => filter.header1 === search);
@@ -72,27 +67,16 @@ const User = () => {
     <div>
       <header>
         <Components.pageTitle
-          titleName={`User`}
+          titleName={`Sales`}
           breadcrumbItem={[]}
-          breadcrumbItemActive="User"
+          breadcrumbItemActive="Sales"
         />
       </header>
 
       <div className="card">
         <div className="card-body">
           <div className="row">
-            <div className="col-12">
-              <button
-                className="btn btn-primary float-end mb-2"
-                onClick={() => ShowModalCreated()}
-              >
-                Created
-              </button>
-            </div>
-            <div className="col-8 mb-3"></div>
-            <div className="col-4">
-              <Select.Status />
-            </div>
+            <div className="col-12"></div>
             <div className="col-12">
               <Components.dataTable
                 dataColumns={dataColumns}
@@ -108,6 +92,8 @@ const User = () => {
                     <td>{item.header3}</td>
                     <td>{item.header4}</td>
                     <td>{item.header5}</td>
+                    <td>{item.header6}</td>
+                    <td>{item.header7}</td>
                   </tr>
                 ))}
               </Components.dataTable>
@@ -121,12 +107,8 @@ const User = () => {
         show={modal.detail}
         onHide={() => setModal((state) => ({ ...state, detail: false }))}
       />
-      <ModalCreated
-        show={modal.create}
-        onHide={() => setModal((state) => ({ ...state, create: false }))}
-      />
     </div>
   );
 };
 
-export default User;
+export default Sales;

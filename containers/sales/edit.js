@@ -1,9 +1,9 @@
 import React from "react";
 import * as Module from "modules";
+import FormEditSales from "components/sales/FormEditSales";
 
-const ModalDetail = (props) => {
+const edit = (props) => {
   const { show, onHide } = props;
-
   const btnSubmit = () => {
     alert("success");
     // letak handleOnChange di sini
@@ -11,16 +11,16 @@ const ModalDetail = (props) => {
 
   return (
     <Module.Modal.Basic
-      modalTitle="Detail"
+      modalTitle="Change Status"
       show={show}
       onHide={onHide}
       btnName="Submit"
       btnSubmit={btnSubmit}
-      size="xl"
+      // size="xl"
     >
-      ModalDetail
+      <FormEditSales />
     </Module.Modal.Basic>
   );
 };
 
-export default ModalDetail;
+export default edit;

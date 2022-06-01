@@ -1,5 +1,4 @@
-import React, { useMemo } from "react";
-import { useTable } from "react-table";
+import React, from "react";
 import PropTypes from "prop-types";
 import * as Component from "..";
 
@@ -14,7 +13,7 @@ const dataTable = (props) => {
   } = props;
 
   return (
-    <div className="container">
+    <React.Fragment>
       <div className="row">
         {activeSearch && (
           <div className="col-4">
@@ -45,7 +44,7 @@ const dataTable = (props) => {
           </div>
         </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

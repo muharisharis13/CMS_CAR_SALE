@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import * as Components from "../components";
 import Script from "next/script";
 import "react-datepicker/dist/react-datepicker.css";
-import getConfig from "next/config";
+import "styles/globals.css";
 
 function MyApp({ Component, pageProps, router }) {
   const [showChild, setShowChild] = useState(false);

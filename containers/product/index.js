@@ -1,33 +1,44 @@
 import React, { useState } from "react";
 import * as Components from "../../components";
-import ModalDetail from "./modal.user.detail";
-import ModalCreated from "./modal.created";
-import * as Select from "components/Select";
+import ModalDetail from "./edit";
+import ModalCreated from "./add";
 
 const dataColumns = [
   {
-    header: "header 1",
+    header: "Nama Mobil",
     key: "header1",
   },
   {
-    header: "header 2",
+    header: "Nama Pemilik",
     key: "header2",
   },
   {
-    header: "header 3",
+    header: "Plat Nomor",
     key: "header3",
   },
   {
-    header: "header 4",
+    header: "No. Handphone",
     key: "header4",
   },
   {
-    header: "More",
+    header: "Model",
     key: "header5",
+  },
+  {
+    header: "Tahun Produksi",
+    key: "header6",
+  },
+  {
+    header: "Km. Berjalan",
+    key: "header7",
+  },
+  {
+    header: "More",
+    key: "header8",
   },
 ];
 
-const User = () => {
+const Product = () => {
   const [modal, setModal] = useState({
     detail: false,
     create: false,
@@ -35,27 +46,32 @@ const User = () => {
   const [search, setSearch] = useState("");
   const [data, setData] = useState([
     {
-      header1: "header1",
-      header2: "header2",
-      header3: "header3",
-      header4: "header4",
-      header5: (
+      header1: "Ford Fiesta",
+      header2: "Ahmad",
+      header3: "BK 1021 SAH",
+      header4: "082267678854",
+      header5: "Sedan",
+      header6: "2013",
+      header7: "130.000",
+      header8: (
         <div className="btn" onClick={() => ShowModal({ id })}>
           View Detail
         </div>
       ),
     },
     {
-      header1: "header1 muharis",
-      header2: "header2",
-      header3: "header3",
-      header4: "header4",
-    },
-    {
-      header1: "header1",
-      header2: "header2",
-      header3: "header3",
-      header4: "header4",
+      header1: "Ford Fiesta",
+      header2: "Ahmad",
+      header3: "BK 1021 SAH",
+      header4: "082267678854",
+      header5: "Sedan",
+      header6: "2013",
+      header7: "130.000",
+      header8: (
+        <div className="btn" onClick={() => ShowModal({ id })}>
+          View Detail
+        </div>
+      ),
     },
   ]);
 
@@ -72,9 +88,9 @@ const User = () => {
     <div>
       <header>
         <Components.pageTitle
-          titleName={`User`}
+          titleName={`Product`}
           breadcrumbItem={[]}
-          breadcrumbItemActive="User"
+          breadcrumbItemActive="Product"
         />
       </header>
 
@@ -88,10 +104,6 @@ const User = () => {
               >
                 Created
               </button>
-            </div>
-            <div className="col-8 mb-3"></div>
-            <div className="col-4">
-              <Select.Status />
             </div>
             <div className="col-12">
               <Components.dataTable
@@ -108,6 +120,9 @@ const User = () => {
                     <td>{item.header3}</td>
                     <td>{item.header4}</td>
                     <td>{item.header5}</td>
+                    <td>{item.header6}</td>
+                    <td>{item.header7}</td>
+                    <td>{item.header8}</td>
                   </tr>
                 ))}
               </Components.dataTable>
@@ -129,4 +144,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default Product;
