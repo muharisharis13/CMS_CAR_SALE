@@ -3,7 +3,9 @@ import Select from "react-select";
 
 const array = [
   { value: "Waiting Schedule", label: "Waiting Schedule" },
+  { value: "Schedule", label: "Schedule" },
   { value: "Inspkesi", label: "Inspkesi" },
+  { value: "Approve", label: "Approve" },
 ];
 
 const Status = (props) => {

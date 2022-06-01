@@ -1,8 +1,10 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import PropTypes from "prop-types";
+import { Status as SelectStatus } from "components/Select";
+import DatePicker from "components/datepicker/single";
+const formInputSales = (props) => {
+  const [date, setDate] = useState(new Date());
 
-const formInputProduct = (props) => {
-  const { phone, setPhone, tahunProduksi, setTahunProduksi } = props;
   return (
     <React.Fragment>
       <div className="row">
@@ -10,26 +12,19 @@ const formInputProduct = (props) => {
           <div className="form-group">
             <div className="mb-3">
               <label for="basicInput">Status</label>
-              <fieldset class="form-group">
-                <select class="form-select" id="basicSelect">
-                  <option>Inpeksi</option>
-                  <option>Approve</option>
-                  <option>Cancel</option>
-                </select>
-              </fieldset>
+              <SelectStatus />
             </div>
           </div>
         </div>
       </div>
+      <DatePicker seletedDate={date} onChange={(e) => setDate(e)} />
     </React.Fragment>
   );
 };
 
-export default memo(formInputProduct);
+export default memo(formInputSales);
 
-formInputProduct.propTypes = {
-  phone: PropTypes.number.isRequired,
-  setPhone: PropTypes.any.isRequired,
-  tahunProduksi: PropTypes.any,
-  setTahunProduksi: PropTypes.any,
+formInputSales.propTypes = {
+  seletedDate: PropTypes.any.isRequired,
+  onChange: PropTypes.any.isRequired,
 };
