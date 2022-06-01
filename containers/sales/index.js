@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import * as Components from "../../components";
 import ModalDetail from "./edit";
+import Badge from "components/badge";
 
 const dataColumns = [
   {
@@ -46,7 +47,7 @@ const Sales = () => {
       header3: "Sedan",
       header4: "082267678854",
       header5: "ahmad@tes.com",
-      header6: <div className="badge bg-warning">Schedule</div>,
+      header6: <Badge status="waiting_schedule" />,
       header7: (
         <div className="btn" onClick={() => ShowModal({ id })}>
           View Detail
