@@ -1,9 +1,14 @@
 import axios from "axios";
+import Cookies from "js-cookies";
 
 class product {
   getProduct = () => {
     return axios
-      .get("https://dummyjson.com/products")
+      .get("https://mesproject.id/api/v1/user/produk", {
+        headers: {
+          Authorization: `Bearer ${Cookies.getItem("token")}`,
+        },
+      })
       .then((res) => res?.data)
       .catch((error) => error?.respones);
   };

@@ -1,15 +1,9 @@
 import React from "react";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import * as Containers from "../../containers";
 import * as Components from "../../components";
 
 function Login() {
-  const router = useRouter();
-  const BtnLogin = (e) => {
-    e.preventDefault();
-    router.push("/");
-  };
   return (
     <div>
       <Components.Helmet title="Login" />
@@ -26,7 +20,7 @@ function Login() {
         <link rel="stylesheet" href="/assets/css/app.css" />
         <link rel="stylesheet" href="/assets/css/pages/auth.css" />
       </Head>
-      <Containers.Login BtnLogin={BtnLogin} />
+      <Containers.Login />
     </div>
   );
 }

@@ -1,11 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import PropTypes from "prop-types";
+import api from "api/login";
+import Cookies from "js-cookies";
+import { useRouter } from "next/router";
 
-const Index = (props) => {
-  const { BtnLogin } = props;
+const Index = () => {
+  const router = useRouter();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const btnSubmit = (e) => {
+    e.preventDefault();
+    const body = {
+      email: username,
+      password: password,
+    };
+    api.postUser(body).then((res) => {
+      console.log(res);
+      if (res.data.id) {
+        Cookies.setItem("token", res.data.token);
+        router.push("/");
+      } else {
+        alert("gagal");
+      }
+    });
+  };
 
+  if (Cookies.getItem("token")) {
+    router.push("/");
+  }
   return (
     <React.Fragment>
       <div id="auth">
@@ -27,12 +50,14 @@ const Index = (props) => {
                 Log in with your data that you entered during registration.
               </p>
 
-              <form onSubmit={BtnLogin}>
+              <form onSubmit={btnSubmit}>
                 <div className="form-group position-relative has-icon-left mb-4">
                   <input
                     type="text"
                     className="form-control form-control-xl"
                     placeholder="Username"
+                    onChange={(event) => setUsername(event.target.value)}
+                    value={username}
                   />
                   <div className="form-control-icon">
                     <i className="bi bi-person"></i>
@@ -43,6 +68,8 @@ const Index = (props) => {
                     type="password"
                     className="form-control form-control-xl"
                     placeholder="Password"
+                    onChange={(event) => setPassword(event.target.value)}
+                    value={password}
                   />
                   <div className="form-control-icon">
                     <i className="bi bi-shield-lock"></i>
@@ -63,7 +90,7 @@ const Index = (props) => {
                   </label>
                 </div>
                 <button
-                  onClick={BtnLogin}
+                  // onClick={BtnLogin}
                   type="submit"
                   className="btn btn-primary btn-block btn-lg shadow-lg mt-5"
                 >
@@ -94,10 +121,6 @@ const Index = (props) => {
       </div>
     </React.Fragment>
   );
-};
-
-Index.propTypes = {
-  BtnLogin: PropTypes.func.isRequired,
 };
 
 export default Index;

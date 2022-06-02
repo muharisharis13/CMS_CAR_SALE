@@ -4,10 +4,12 @@ import * as Components from "../components";
 import Script from "next/script";
 import "react-datepicker/dist/react-datepicker.css";
 import "styles/globals.css";
+import Cookies from "js-cookies";
+import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps, router }) {
   const [showChild, setShowChild] = useState(false);
-
+  const router2 = useRouter();
   useEffect(() => {
     setShowChild(true);
   }, []);
@@ -21,6 +23,9 @@ function MyApp({ Component, pageProps, router }) {
   } else if (router.pathname.startsWith("/auth/")) {
     return <Component {...pageProps} />;
   } else {
+    if (!Cookies.getItem("token")) {
+      router2.push("/auth/login");
+    }
     return (
       <>
         <Components.Layout>

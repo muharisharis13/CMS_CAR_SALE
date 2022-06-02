@@ -43,9 +43,9 @@ const Product = () => {
   const getData = async () => {
     await api.getProduct().then((res) => {
       console.log(res);
-      if (res.products) {
-        setData(res.products);
-      }
+      // if (res.products) {
+      //   setData(res.products);
+      // }
     });
   };
 
