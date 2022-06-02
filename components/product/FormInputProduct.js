@@ -2,17 +2,27 @@ import React, { memo } from "react";
 import PropTypes from "prop-types";
 
 const formInputProduct = (props) => {
-  const { phone, setPhone, tahunProduksi, setTahunProduksi } = props;
+  const {
+    phone,
+    setPhone,
+    title,
+    setTitle,
+    brand,
+    tahunProduksi,
+    setTahunProduksi,
+  } = props;
   return (
     <React.Fragment>
       <div className="row">
         <div className="col-12">
           <div className="form-group">
             <div className="mb-3">
-              <label for="basicInput">Nama Mobil</label>
+              <label for="basicInput">Title</label>
               <input
                 type="text"
                 className="form-control"
+                value={title}
+                onChange={setTitle}
                 id="basicInput"
                 placeholder="Nama Mobil"
               />
@@ -22,6 +32,7 @@ const formInputProduct = (props) => {
               <input
                 type="text"
                 className="form-control"
+                value={brand}
                 id="basicInput"
                 placeholder="Nama Pemilik"
               />
