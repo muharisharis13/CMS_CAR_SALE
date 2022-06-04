@@ -37,8 +37,10 @@ const Product = () => {
   const getData = async () => {
     await api.getProduct().then((res) => {
       // console.log(res);
-      if (res.data) {
+      if (res?.status.code === 200) {
         setData(res.data);
+      } else {
+        alert("Error");
       }
     });
   };

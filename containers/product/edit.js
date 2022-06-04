@@ -17,10 +17,12 @@ const edit = (props) => {
     };
 
     api.ProductUpdate({ id: params, body: body }).then((res) => {
-      if (res.data.body) {
+      if (res?.status?.code === 200) {
         alert("berhasil");
         getData();
         onHide(true);
+      } else {
+        alert("Error");
       }
     });
   };
