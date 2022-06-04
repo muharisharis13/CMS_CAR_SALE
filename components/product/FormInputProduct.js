@@ -3,13 +3,16 @@ import PropTypes from "prop-types";
 
 const formInputProduct = (props) => {
   const {
-    phone,
-    setPhone,
-    title,
-    setTitle,
-    brand,
-    tahunProduksi,
-    setTahunProduksi,
+    nama_penjual,
+    setNama_penjual,
+    no_hp,
+    setNo_hp,
+    email,
+    setEmail,
+    merek,
+    setMerek,
+    model,
+    setModel,
   } = props;
   return (
     <React.Fragment>
@@ -17,33 +20,14 @@ const formInputProduct = (props) => {
         <div className="col-12">
           <div className="form-group">
             <div className="mb-3">
-              <label for="basicInput">Title</label>
+              <label for="basicInput">Nama</label>
               <input
                 type="text"
                 className="form-control"
-                value={title}
-                onChange={setTitle}
+                value={nama_penjual}
+                onChange={setNama_penjual}
                 id="basicInput"
-                placeholder="Nama Mobil"
-              />
-            </div>
-            <div className="mb-3">
-              <label for="basicInput">Nama Pemilik</label>
-              <input
-                type="text"
-                className="form-control"
-                value={brand}
-                id="basicInput"
-                placeholder="Nama Pemilik"
-              />
-            </div>
-            <div className="mb-3">
-              <label for="basicInput">Plat Nomor</label>
-              <input
-                type="text"
-                className="form-control"
-                id="basicInput"
-                placeholder="Plat Nomor"
+                placeholder="Nama Penjual"
               />
             </div>
             <div className="mb-3">
@@ -51,12 +35,34 @@ const formInputProduct = (props) => {
               <input
                 type="tel"
                 className="form-control"
-                id="basicInput"
-                value={phone}
+                value={no_hp}
                 onChange={(event) =>
-                  setPhone(event.target.value.replace(/[^0-9.]/g, ""))
+                  setNo_hp(event.target.value.replace(/[^0-9.]/g, ""))
                 }
-                placeholder="Phone Number"
+                id="basicInput"
+                placeholder="No. Handphone"
+              />
+            </div>
+            <div className="mb-3">
+              <label for="basicInput">Email</label>
+              <input
+                type="email"
+                className="form-control"
+                id="basicInput"
+                placeholder="Email"
+                value={email}
+                onChange={setEmail}
+              />
+            </div>
+            <div className="mb-3">
+              <label for="basicInput">Merek</label>
+              <input
+                type="text"
+                className="form-control"
+                id="basicInput"
+                placeholder="Merek"
+                value={merek}
+                onChange={setMerek}
               />
             </div>
             <div className="mb-3">
@@ -66,28 +72,8 @@ const formInputProduct = (props) => {
                 className="form-control"
                 id="basicInput"
                 placeholder="Model"
-              />
-            </div>
-            <div className="mb-3">
-              <label for="basicInput">Tahun Produksi</label>
-              <input
-                type="text"
-                className="form-control"
-                id="basicInput"
-                value={tahunProduksi}
-                onChange={(event) =>
-                  setTahunProduksi(event.target.value.replace(/[^0-9.]/g, ""))
-                }
-                placeholder="Tahun Produksi"
-              />
-            </div>
-            <div className="mb-3">
-              <label for="basicInput">Km. Berjalan</label>
-              <input
-                type="text"
-                className="form-control"
-                id="basicInput"
-                placeholder="Model"
+                value={model}
+                onChange={setModel}
               />
             </div>
           </div>
@@ -100,8 +86,8 @@ const formInputProduct = (props) => {
 export default memo(formInputProduct);
 
 formInputProduct.propTypes = {
-  phone: PropTypes.number.isRequired,
-  setPhone: PropTypes.any.isRequired,
-  tahunProduksi: PropTypes.any,
-  setTahunProduksi: PropTypes.any,
+  merek: PropTypes.any.isRequired,
+  setMerek: PropTypes.any.isRequired,
+  // tahunProduksi: PropTypes.any,
+  // setTahunProduksi: PropTypes.any,
 };

@@ -9,23 +9,27 @@ const edit = (props) => {
 
   const btnSubmit = () => {
     const body = {
-      title: detail.title,
+      nama_penjual: detail.nama_penjual,
+      no_hp: detail.no_hp,
+      email: detail.email,
+      merek: detail.merek,
+      model: detail.model,
     };
 
     api.ProductUpdate({ id: params, body: body }).then((res) => {
-      console.log(res);
-      if (res.title) {
-        alert("berhasil edit gais", res?.title);
-        onHide();
+      if (res.data.body) {
+        alert("berhasil");
         getData();
+        onHide(true);
       }
     });
   };
 
   const getDataDetail = async () => {
     await api.getProductDetail({ id: params }).then((res) => {
-      if (res) {
-        setDetail(res);
+      console.log("ahmad", res.data);
+      if (res.data) {
+        setDetail(res.data);
       }
     });
   };
@@ -45,13 +49,39 @@ const edit = (props) => {
       size="xl"
     >
       <FormInputProduct
-        phone={detail.title}
-        title={detail.title}
-        brand={detail.brand}
-        setTitle={(e) =>
+        nama_penjual={detail.nama_penjual}
+        no_hp={detail.no_hp}
+        email={detail.email}
+        merek={detail.merek}
+        model={detail.model}
+        setNama_penjual={(e) =>
           setDetail((state) => ({
             ...state,
-            title: e.target.value,
+            nama_penjual: e.target.value,
+          }))
+        }
+        setNo_hp={(e) =>
+          setDetail((state) => ({
+            ...state,
+            no_hp: e.target.value,
+          }))
+        }
+        setEmail={(e) =>
+          setDetail((state) => ({
+            ...state,
+            email: e.target.value,
+          }))
+        }
+        setMerek={(e) =>
+          setDetail((state) => ({
+            ...state,
+            merek: e.target.value,
+          }))
+        }
+        setModel={(e) =>
+          setDetail((state) => ({
+            ...state,
+            model: e.target.value,
           }))
         }
       />

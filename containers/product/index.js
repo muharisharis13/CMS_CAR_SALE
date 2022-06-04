@@ -6,25 +6,19 @@ import api from "api/product";
 
 const dataColumns = [
   {
-    header: "Nama Mobil",
-  },
-  {
-    header: "Nama Pemilik",
-  },
-  {
-    header: "Plat Nomor",
+    header: "Nama",
   },
   {
     header: "No. Handphone",
   },
   {
+    header: "Email",
+  },
+  {
+    header: "Merek",
+  },
+  {
     header: "Model",
-  },
-  {
-    header: "Tahun Produksi",
-  },
-  {
-    header: "Km. Berjalan",
   },
   {
     header: "More",
@@ -42,10 +36,10 @@ const Product = () => {
 
   const getData = async () => {
     await api.getProduct().then((res) => {
-      console.log(res);
-      // if (res.products) {
-      //   setData(res.products);
-      // }
+      // console.log(res);
+      if (res.data) {
+        setData(res.data);
+      }
     });
   };
 
@@ -97,13 +91,11 @@ const Product = () => {
               >
                 {data.map((item, idx) => (
                   <tr key={idx}>
-                    <td>{item.title}</td>
-                    <td>{item.brand}</td>
-                    <td>{item.category}</td>
-                    <td>{item.description}</td>
-                    <td>{item.header5}</td>
-                    <td>{item.header6}</td>
-                    <td>{item.header7}</td>
+                    <td>{item.nama_penjual}</td>
+                    <td>{item.no_hp}</td>
+                    <td>{item.email}</td>
+                    <td>{item.merek}</td>
+                    <td>{item.model}</td>
                     <td>
                       <div
                         className="btn btn-primary d-flex align-items-center py-2"
