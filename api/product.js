@@ -4,7 +4,18 @@ import Cookies from "js-cookies";
 class product {
   getProduct = () => {
     return axios
-      .get("https://carsale.mesproject.id/api/v1/user/produk", {
+
+      .get("https://dev-carsale.mesproject.id/api/v1/admin/product", {
+        headers: {
+          Authorization: `Bearer ${Cookies.getItem("token")}`,
+        },
+      })
+      .then((res) => res?.data)
+      .catch((error) => error?.respones);
+  };
+  postProduct = (body) => {
+    return axios
+      .post("https://dev-carsale.mesproject.id/api/v1/admin/product", body, {
         headers: {
           Authorization: `Bearer ${Cookies.getItem("token")}`,
         },
@@ -14,7 +25,7 @@ class product {
   };
   getProductDetail = ({ id }) => {
     return axios
-      .get(`https://carsale.mesproject.id/api/v1/user/produk/detail/${id}`, {
+      .get(`https://dev-carsale.mesproject.id/api/v1/admin/product/${id}`, {
         headers: {
           Authorization: `Bearer ${Cookies.getItem("token")}`,
         },
@@ -25,7 +36,7 @@ class product {
   ProductUpdate = ({ id, body }) => {
     return axios
       .put(
-        `https://carsale.mesproject.id/api/v1/user/produk/edit/${id}`,
+        `https://dev-carsale.mesproject.id/api/v1/admin/product/${id}`,
         body,
         {
           headers: {

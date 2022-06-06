@@ -25,7 +25,7 @@ const formInputProduct = (props) => {
                 type="text"
                 className="form-control"
                 value={nama_penjual}
-                onChange={setNama_penjual}
+                onChange={(event) => setNama_penjual(event.target.value)}
                 id="basicInput"
                 placeholder="Nama Penjual"
               />
@@ -51,7 +51,7 @@ const formInputProduct = (props) => {
                 id="basicInput"
                 placeholder="Email"
                 value={email}
-                onChange={setEmail}
+                onChange={(event) => setEmail(event.target.value)}
               />
             </div>
             <div className="mb-3">
@@ -62,7 +62,7 @@ const formInputProduct = (props) => {
                 id="basicInput"
                 placeholder="Merek"
                 value={merek}
-                onChange={setMerek}
+                onChange={(event) => setMerek(event.target.value)}
               />
             </div>
             <div className="mb-3">
@@ -73,7 +73,7 @@ const formInputProduct = (props) => {
                 id="basicInput"
                 placeholder="Model"
                 value={model}
-                onChange={setModel}
+                onChange={(event) => setModel(event.target.value)}
               />
             </div>
           </div>
@@ -86,8 +86,14 @@ const formInputProduct = (props) => {
 export default memo(formInputProduct);
 
 formInputProduct.propTypes = {
+  nama_penjual: PropTypes.any.isRequired,
+  setNama_penjual: PropTypes.any.isRequired,
+  no_hp: PropTypes.any.isRequired,
+  setNo_hp: PropTypes.any.isRequired,
+  email: PropTypes.any.isRequired,
+  setEmail: PropTypes.any.isRequired,
   merek: PropTypes.any.isRequired,
   setMerek: PropTypes.any.isRequired,
-  // tahunProduksi: PropTypes.any,
-  // setTahunProduksi: PropTypes.any,
+  model: PropTypes.any.isRequired,
+  setModel: PropTypes.any.isRequired,
 };

@@ -1,14 +1,34 @@
 import React, { useState } from "react";
 import * as Module from "modules";
 import FormInputProduct from "components/product/FormInputProduct";
+import api from "api/product";
+import Cookies from "js-cookies";
 
 const add = (props) => {
   const { show, onHide } = props;
-  const [phone, setPhone] = useState(0);
-  const [tahunProduksi, setTahunProduksi] = useState(2012);
-  const btnSubmit = () => {
-    alert("success");
-    // letak handleOnChange di sini
+  const [nama_penjual, setNama_penjual] = useState("");
+  const [no_hp, setNo_hp] = useState("");
+  const [email, setEmail] = useState("");
+  const [merek, setMerek] = useState("");
+  const [model, setModel] = useState("");
+  const btnSubmit = (e) => {
+    e.preventDefault();
+    const body = {
+      nama_penjual: nama_penjual,
+      no_hp: no_hp,
+      email: email,
+      merek: merek,
+      model: model,
+    };
+    api.postProduct(body).then((res) => {
+      if (res.data.id) {
+        Cookies.setItem("token", res.data.token);
+        alert("Berhasil");
+        onHide();
+      } else {
+        alert("gagal");
+      }
+    });
   };
   return (
     <Module.Modal.Basic
@@ -20,10 +40,16 @@ const add = (props) => {
       size="xl"
     >
       <FormInputProduct
-        phone={phone}
-        setPhone={setPhone}
-        tahunProduksi={tahunProduksi}
-        setTahunProduksi={setTahunProduksi}
+        nama_penjual={nama_penjual}
+        setNama_penjual={setNama_penjual}
+        no_hp={no_hp}
+        setNo_hp={setNo_hp}
+        email={email}
+        setEmail={setEmail}
+        merek={merek}
+        setMerek={setMerek}
+        model={model}
+        setModel={setModel}
       />
     </Module.Modal.Basic>
   );
