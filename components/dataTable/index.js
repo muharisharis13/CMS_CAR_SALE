@@ -1,4 +1,4 @@
-import React, from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import * as Component from "..";
 
@@ -10,6 +10,9 @@ const dataTable = (props) => {
     onChangeSearch,
     SubmitSearch,
     activeSearch,
+    totalPage,
+    handleOnChange,
+    page,
   } = props;
 
   return (
@@ -39,9 +42,15 @@ const dataTable = (props) => {
           </div>
         </div>
         <div className="col-12">
-          <div className="mt-3">
-            <Component.Pagination />
-          </div>
+          {totalPage > 1 ? (
+            <div className="mt-3">
+              <Component.Pagination
+                totalPage={totalPage}
+                handleOnChange={handleOnChange}
+                page={page}
+              />
+            </div>
+          ) : null}
         </div>
       </div>
     </React.Fragment>

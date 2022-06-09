@@ -32,13 +32,32 @@ const Product = () => {
   });
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
   const [params, setParams] = useState(null);
 
   const getData = async () => {
     await api.getProduct().then((res) => {
-      // console.log(res);
+      console.log("getdata", res.data);
       if (res?.status.code === 200) {
-        setData(res.data);
+        setData(res.data.data);
+        setTotalPage(res.data.total_page);
+        setPage(res.data.page);
+      } else {
+        alert("Error");
+      }
+    });
+  };
+
+  const btnPagination = async (page) => {
+    console.log("page", page.selected + 1);
+    let selectedPage = page.selected + 1;
+    await api.getProduct(selectedPage).then((res) => {
+      console.log("getdata", res.data);
+      if (res?.status.code === 200) {
+        setData(res.data.data);
+        setTotalPage(res.data.total_page);
+        setPage(res.data.page);
       } else {
         alert("Error");
       }
@@ -90,6 +109,9 @@ const Product = () => {
                 onChangeSearch={(e) => setSearch(e)}
                 SubmitSearch={onHandlerSubmitSearch}
                 activeSearch
+                totalPage={totalPage}
+                page={page}
+                handleOnChange={btnPagination}
               >
                 {data.map((item, idx) => (
                   <tr key={idx}>

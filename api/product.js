@@ -2,14 +2,16 @@ import axios from "axios";
 import Cookies from "js-cookies";
 
 class product {
-  getProduct = () => {
+  getProduct = (page = 1) => {
     return axios
-
-      .get("https://dev-carsale.mesproject.id/api/v1/admin/product", {
-        headers: {
-          Authorization: `Bearer ${Cookies.getItem("token")}`,
-        },
-      })
+      .get(
+        `https://dev-carsale.mesproject.id/api/v1/admin/product?page=${page}`,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.getItem("token")}`,
+          },
+        }
+      )
       .then((res) => res?.data)
       .catch((error) => error?.respones);
   };
@@ -31,7 +33,7 @@ class product {
         },
       })
       .then((res) => res?.data)
-      .catch((error) => error?.respones);
+      .catch((error) => error?.response);
   };
   ProductUpdate = ({ id, body }) => {
     return axios

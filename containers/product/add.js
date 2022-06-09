@@ -11,11 +11,12 @@ const add = (props) => {
   const [email, setEmail] = useState("");
   const [merek, setMerek] = useState("");
   const [model, setModel] = useState("");
+  const hape = no_hp.substring(0, 2);
   const btnSubmit = (e) => {
     e.preventDefault();
     const body = {
       nama_penjual: nama_penjual,
-      no_hp: no_hp,
+      no_hp: no_hp.replace("08", "62"),
       email: email,
       merek: merek,
       model: model,

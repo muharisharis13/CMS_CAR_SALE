@@ -1,36 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as Components from "../../components";
 import ModalDetail from "./edit";
 import Badge from "components/badge";
+import api from "api/sales";
 
 const dataColumns = [
   {
-    header: "Nama",
-    key: "header1",
-  },
-  {
-    header: "Merk",
-    key: "header2",
+    header: "Merek",
   },
   {
     header: "Model",
-    key: "header3",
+  },
+  {
+    header: "Nama Calon Penjual",
   },
   {
     header: "No. Handphone",
-    key: "header4",
   },
   {
     header: "Email",
-    key: "header5",
   },
   {
     header: "Status",
-    key: "header6",
   },
   {
     header: "More",
-    key: "header7",
   },
 ];
 
@@ -40,21 +34,37 @@ const Sales = () => {
     create: false,
   });
   const [search, setSearch] = useState("");
-  const [data, setData] = useState([
-    {
-      header1: "Ahmad",
-      header2: "Ford",
-      header3: "Sedan",
-      header4: "082267678854",
-      header5: "ahmad@tes.com",
-      header6: <Badge status="waiting_schedule" />,
-      header7: (
-        <div className="btn" onClick={() => ShowModal({ id })}>
-          View Detail
-        </div>
-      ),
-    },
-  ]);
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
+  const [params, setParams] = useState(null);
+
+  const getData = async () => {
+    await api.getSales().then((res) => {
+      // console.log("getData", res.data);
+      if (res?.status.code === 200) {
+        setData(res.data.data);
+      }
+    });
+  };
+
+  const btnPagination = async (page) => {
+    // console.log("page", page.selected + 1);
+    let selectedPage = page.selectedPage + 1;
+    await api.getSales(selectedPage).then((res) => {
+      if (res?.status.code === 200) {
+        setData(res.data.data);
+        setTotalPage(res.data.total_page);
+        setPage(res.data.page);
+      } else {
+        alert("error");
+      }
+    });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const ShowModal = () => setModal((state) => ({ ...state, detail: true }));
 
@@ -84,16 +94,28 @@ const Sales = () => {
                 onChangeSearch={(e) => setSearch(e)}
                 SubmitSearch={onHandlerSubmitSearch}
                 activeSearch
+                totalPage={totalPage}
+                page={page}
+                handleOnChange={btnPagination}
               >
                 {data.map((item, idx) => (
                   <tr key={idx}>
-                    <td>{item.header1}</td>
-                    <td>{item.header2}</td>
-                    <td>{item.header3}</td>
-                    <td>{item.header4}</td>
-                    <td>{item.header5}</td>
-                    <td>{item.header6}</td>
-                    <td>{item.header7}</td>
+                    <td>{item.merek}</td>
+                    <td>{item.model}</td>
+                    <td>{item.name}</td>
+                    <td>{item.tel}</td>
+                    <td>{item.email}</td>
+                    <td>
+                      <Badge status={item.status} />
+                    </td>
+                    <td>
+                      <div
+                        className="btn btn-primay d-flex align-items-center py-2"
+                        onClick={() => ShowModal(item.idx)}
+                      >
+                        <i className="bi bi-pencil-square"></i>
+                      </div>
+                    </td>
                   </tr>
                 ))}
               </Components.dataTable>
