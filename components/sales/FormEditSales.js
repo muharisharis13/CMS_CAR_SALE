@@ -4,20 +4,25 @@ import { Status as SelectStatus } from "components/Select";
 import DatePicker from "components/datepicker/single";
 const formInputSales = (props) => {
   const [date, setDate] = useState(new Date());
+  const { params } = props;
 
   return (
     <React.Fragment>
       <div className="row">
-        <div className="col-12">
-          <div className="form-group">
-            <div className="mb-3">
-              <label for="basicInput">Status</label>
-              <SelectStatus />
+        {params.status === "PENDING" ? null : (
+          <div className="col-12">
+            <div className="form-group">
+              <div className="mb-3">
+                <label for="basicInput">Status</label>
+                <SelectStatus />
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
-      <DatePicker seletedDate={date} onChange={(e) => setDate(e)} />
+      {params.status !== "PENDING" ? null : (
+        <DatePicker seletedDate={date} onChange={(e) => setDate(e)} />
+      )}
     </React.Fragment>
   );
 };

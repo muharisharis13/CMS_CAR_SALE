@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import * as Module from "modules";
 import FormEditSales from "components/sales/FormEditSales";
 
 const edit = (props) => {
   const { show, onHide } = props;
+  const [params, setParams] = useState({});
   const btnSubmit = () => {
     alert("success");
     // letak handleOnChange di sini
+  };
+
+  const getDataDetail = () => {
+    // DI SINI API
+    // jika data dapat maka kirim ke setParams(res.data.data)
   };
 
   return (
@@ -18,7 +24,7 @@ const edit = (props) => {
       btnSubmit={btnSubmit}
       // size="xl"
     >
-      <FormEditSales />
+      <FormEditSales params={params} />
     </Module.Modal.Basic>
   );
 };
