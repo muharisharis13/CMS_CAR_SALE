@@ -4,6 +4,7 @@ import { Status as SelectStatus } from "components/Select";
 import DatePicker from "components/datepicker/single";
 const formInputSales = (props) => {
   const [date, setDate] = useState(new Date());
+  const { status, setStatus } = props;
 
   return (
     <React.Fragment>
@@ -12,7 +13,10 @@ const formInputSales = (props) => {
           <div className="form-group">
             <div className="mb-3">
               <label for="basicInput">Status</label>
-              <SelectStatus />
+              <SelectStatus
+                value={status}
+                onChange={(event) => setStatus(event.target.value)}
+              />
             </div>
           </div>
         </div>

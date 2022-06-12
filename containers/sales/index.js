@@ -66,7 +66,10 @@ const Sales = () => {
     getData();
   }, []);
 
-  const ShowModal = () => setModal((state) => ({ ...state, detail: true }));
+  const ShowModal = (id) => {
+    setParams(id);
+    setModal((state) => ({ ...state, detail: true }));
+  };
 
   const onHandlerSubmitSearch = () => {
     const filter = data.filter((filter) => filter.header1 === search);
@@ -111,7 +114,7 @@ const Sales = () => {
                     <td>
                       <div
                         className="btn btn-primay d-flex align-items-center py-2"
-                        onClick={() => ShowModal(item.idx)}
+                        onClick={() => ShowModal(item.id)}
                       >
                         <i className="bi bi-pencil-square"></i>
                       </div>
@@ -126,6 +129,8 @@ const Sales = () => {
 
       {/* modal ========== */}
       <ModalDetail
+        params={params}
+        getData={getData}
         show={modal.detail}
         onHide={() => setModal((state) => ({ ...state, detail: false }))}
       />
