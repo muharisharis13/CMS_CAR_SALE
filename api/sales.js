@@ -24,5 +24,15 @@ class sales {
       .then((res) => res?.data)
       .catch((error) => error?.response);
   };
+  getSalesStatus = () => {
+    return axios
+      .get(`${base_url}/status`, {
+        headers: {
+          Authorization: `Bearer ${Cookies.getItem("token")}`,
+        },
+      })
+      .then((res) => res?.data)
+      .catch((error) => error?.response);
+  };
 }
 export default new sales();
