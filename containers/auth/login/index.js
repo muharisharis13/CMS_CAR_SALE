@@ -16,7 +16,6 @@ const Index = () => {
       password: password,
     };
     api.postUser(body).then((res) => {
-      console.log(res);
       if (res.data.id) {
         Cookies.setItem("token", res.data.token);
         router.push("/");

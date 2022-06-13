@@ -38,7 +38,6 @@ const Product = () => {
 
   const getData = async () => {
     await api.getProduct().then((res) => {
-      console.log("getdata", res.data);
       if (res?.status.code === 200) {
         setData(res.data.data);
         setTotalPage(res.data.total_page);
@@ -50,10 +49,8 @@ const Product = () => {
   };
 
   const btnPagination = async (page) => {
-    console.log("page", page.selected + 1);
     let selectedPage = page.selected + 1;
     await api.getProduct(selectedPage).then((res) => {
-      console.log("getdata", res.data);
       if (res?.status.code === 200) {
         setData(res.data.data);
         setTotalPage(res.data.total_page);

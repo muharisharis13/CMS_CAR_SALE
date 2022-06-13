@@ -29,7 +29,6 @@ const edit = (props) => {
 
   const getDataDetail = async () => {
     await api.getProductDetail({ id: params }).then((res) => {
-      console.log("ahmad", res.data);
       if (res.data) {
         setDetail(res.data);
       }

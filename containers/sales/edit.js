@@ -15,7 +15,6 @@ const edit = (props) => {
     };
     const id = detail.id;
     api.salesUpdate({ id: id, body: body }).then((res) => {
-      // console.log("ha", res?.data);
       if (res?.status?.code === 200) {
         alert("berhasil");
         getData();
