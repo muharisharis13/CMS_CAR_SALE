@@ -21,6 +21,9 @@ const dataColumns = [
     header: "Email",
   },
   {
+    header: "Datetime",
+  },
+  {
     header: "Status",
   },
   {
@@ -40,17 +43,19 @@ const Sales = () => {
   const [params, setParams] = useState(null);
 
   const getData = async () => {
-    await api.getSales().then((res) => {
-      // console.log("getData", res.data);
+    await api.getSales(page).then((res) => {
+      console.log("getData", res.data);
       if (res?.status.code === 200) {
         setData(res.data.data);
+        setTotalPage(res.data.total_page);
+        setPage(res.data.page);
       }
     });
   };
 
-  const btnPagination = async (page) => {
-    // console.log("page", page.selected + 1);
-    let selectedPage = page.selectedPage + 1;
+  const btnPagination = async (pageData) => {
+    console.log("page", page.selected + 1);
+    let selectedPage = pageData.selected + 1;
     await api.getSales(selectedPage).then((res) => {
       if (res?.status.code === 200) {
         setData(res.data.data);
@@ -108,6 +113,13 @@ const Sales = () => {
                     <td>{item.name}</td>
                     <td>{item.tel}</td>
                     <td>{item.email}</td>
+                    <td>
+                      <>
+                        {item.inspection_date === null
+                          ? "-"
+                          : item.inspection_date}
+                      </>
+                    </td>
                     <td>
                       <Badge status={item.status} />
                     </td>

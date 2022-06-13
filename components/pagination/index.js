@@ -15,7 +15,7 @@ const IdxPagination = (props) => {
       pageCount={totalPage}
       marginPagesDisplayed={1}
       pageRangeDisplayed={2}
-      onPageChange={handleOnChange}
+      onPageChange={(e) => handleOnChange(e)}
       containerClassName={"pagination"}
       previousLinkClassName={"pagination__link"}
       nextLinkClassName={"pagination__link"}
