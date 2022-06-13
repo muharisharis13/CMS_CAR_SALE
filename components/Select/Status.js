@@ -4,7 +4,7 @@ import api from "api/sales";
 
 const Status = (props) => {
   const { params } = props;
-  const [selected, setSelected] = useState(props);
+  const [selected, setSelected] = useState(null);
   const [option, setOption] = useState([]);
   const getDataStatus = async () => {
     await api.getSalesStatus({ id: params }).then((res) => {
@@ -28,7 +28,7 @@ const Status = (props) => {
         label: item.status,
       }))}
       value={selected}
-      // onChange={(e) => HandleSelected(e.target.value)}
+      onChange={(e) => HandleSelected(e)}
       placeholder="Select Status"
     />
   );

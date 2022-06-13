@@ -14,7 +14,7 @@ const formInputSales = (props) => {
             <div className="form-group">
               <div className="mb-3">
                 <label for="basicInput">Status</label>
-                <SelectStatus options={props} />
+                <SelectStatus value={params.status} />
               </div>
             </div>
           </div>
