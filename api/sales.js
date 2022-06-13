@@ -34,5 +34,15 @@ class sales {
       .then((res) => res?.data)
       .catch((error) => error?.response);
   };
+  salesUpdate = ({ id, body }) => {
+    return axios
+      .put(`${base_url}/pre-sales/update/status?id=${id}`, body, {
+        headers: {
+          Authorization: `Bearer ${Cookies.getItem("token")}`,
+        },
+      })
+      .then((res) => res?.data)
+      .catch((error) => error?.respones);
+  };
 }
 export default new sales();

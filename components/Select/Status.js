@@ -1,35 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Select from "react-select";
 import api from "api/sales";
 
 const Status = (props) => {
-  const { params } = props;
-  const [selected, setSelected] = useState(null);
+  const { HandleSelected, selected, status } = props;
   const [option, setOption] = useState([]);
-  const getDataStatus = async () => {
-    await api.getSalesStatus({ id: params }).then((res) => {
-      // console.log("status", res.data);
+  const filterSelect = (filter) => {
+    let statusProps = status;
+    if (statusProps === "PENDING") {
+      return filter.value === "SCHEDULE" || filter.value === "CANCEL";
+    } else if (statusProps === "SCHEDULE") {
+      return filter.value === "INSPEKSI" || filter.value === "CANCEL";
+    } else if (statusProps === "INSPEKSI") {
+      return filter.value === "APPROVE";
+    } else if (statusProps === "APPROVE") {
+      return filter.value === "SOLD";
+    } else return filter;
+  };
+  const getDataStatus = useCallback(async () => {
+    await api.getSalesStatus().then((res) => {
       if (res.data) {
-        setOption(res.data);
+        setOption(
+          res.data?.map((item) => ({
+            value: item.status,
+            label: item.status,
+          }))
+        );
       }
     });
-  };
+  }, [selected?.value]);
   useEffect(() => {
     getDataStatus();
-  });
+  }, []);
 
-  const HandleSelected = (e) => {
-    setSelected(e);
-  };
   return (
     <Select
-      options={option.map((item) => ({
-        value: item.status,
-        label: item.status,
-      }))}
+      options={option.filter(filterSelect)}
       value={selected}
       onChange={(e) => HandleSelected(e)}
       placeholder="Select Status"
+      isDisabled={status === "CANCEL" ? true : false}
     />
   );
 };
